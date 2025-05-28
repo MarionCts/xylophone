@@ -1,0 +1,89 @@
+/* RESET CSS */
+
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CONTAINER */
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+/* XYLOPHONE */
+
+.xylo {
+    width: 50px;
+    transition: all 0.1s;
+    cursor: pointer;
+}
+
+.xyloDo {
+    background-color: #664F9C;
+    height: 250px;
+}
+
+.xyloDo:active {
+    background-color: #482f82;
+}
+
+.xyloRe {
+    background-color: #1A4082;
+    height: 230px;
+}
+
+.xyloRe:active {
+    background-color: #092a61;
+}
+
+.xyloMi {
+    background-color: #97D4E4;
+    height: 210px;
+}
+
+.xyloMi:active {
+    background-color: #4091a5;
+}
+
+.xyloFa {
+    background-color: #26724A;
+    height: 190px;
+}
+
+.xyloFa:active {
+    background-color: #0a552d;
+}
+
+.xyloSol {
+    background-color: #7EBF79;
+    height: 170px;
+}
+
+.xyloSol:active {
+    background-color: #41863c;
+}
+
+.xyloLa {
+    background-color: #FDEB35;
+    height: 150px;
+}
+
+.xyloLa:active {
+    background-color: #9e920c;
+}
+
+.xyloSi {
+    background-color: #F08038;
+    height: 120px;
+}
+
+.xyloSi:active {
+    background-color: #a44c15;
+}
+
