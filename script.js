@@ -11,7 +11,7 @@ for (let i = 0; i <= 7; i++) {
     container.append(xylo);
 }
 
-// KEY NOTE CLASSES
+// KEY NOTES CLASSES
 
 let xylo = document.querySelectorAll(".xylo");
 let Do = xylo[1].classList.add("xyloDo");
@@ -22,43 +22,62 @@ let Sol = xylo[5].classList.add("xyloSol");
 let La = xylo[6].classList.add("xyloLa");
 let Si = xylo[7].classList.add("xyloSi");
 
-// SELECTING KEY NOTES
+// KEY NOTES TABLE
 
-let xyloDo = document.querySelector(".xyloDo");
-let xyloRe = document.querySelector(".xyloRe");
-let xyloMi = document.querySelector(".xyloMi");
-let xyloFa = document.querySelector(".xyloFa");
-let xyloSol = document.querySelector(".xyloSol");
-let xyloLa = document.querySelector(".xyloLa");
-let xyloSi = document.querySelector(".xyloSi");
-
-// SOUND FILES - REGULAR
-
-const doNote = `Mallet Note/Mallet C1.wav`;
-const reNote = `Mallet Note/Mallet D1.wav`;
-const miNote = `Mallet Note/Mallet E1.wav`;
-const faNote = `Mallet Note/Mallet F1.wav`;
-const solNote = `Mallet Note/Mallet G1.wav`;
-const laNote = `Mallet Note/Mallet A1.wav`;
-const siNote = `Mallet Note/Mallet B1.wav`;
-
-// SOUND FILES - HIGH PITCHED
-
-const doNoteHigh = `Mallet Note/Mallet C2.wav`;
-const reNoteHigh = `Mallet Note/Mallet D2.wav`;
-const miNoteHigh = `Mallet Note/Mallet E2.wav`;
-const faNoteHigh = `Mallet Note/Mallet F2.wav`;
-const solNoteHigh = `Mallet Note/Mallet G2.wav`;
-const laNoteHigh = `Mallet Note/Mallet A2.wav`;
-const siNoteHigh = `Mallet Note/Mallet B2.wav`;
+const tableNotes = [
+    {
+        note: "Do",
+        base: `Mallet Note/Mallet C1.wav`,
+        high: `Mallet Note/Mallet C2.wav`,
+        sharp: `Mallet Note/Mallet C#2.wav`,
+    },
+    {
+        note: "Re",
+        base: `Mallet Note/Mallet D1.wav`,
+        high: `Mallet Note/Mallet D2.wav`,
+        sharp: `Mallet Note/Mallet D3.wav`,
+    },
+    {
+        note: "Mi",
+        base: `Mallet Note/Mallet E1.wav`,
+        high: `Mallet Note/Mallet E2.wav`,
+        sharp: `Mallet Note/Mallet E3.wav`,
+    },
+    {
+        note: "Fa",
+        base: `Mallet Note/Mallet F1.wav`,
+        high: `Mallet Note/Mallet F2.wav`,
+        sharp: `Mallet Note/Mallet F3.wav`,
+    },
+    {
+        note: "Sol",
+        base: `Mallet Note/Mallet G1.wav`,
+        high: `Mallet Note/Mallet G2.wav`,
+        sharp: `Mallet Note/Mallet G3.wav`,
+    },
+    {
+        note: "La",
+        base: `Mallet Note/Mallet A1.wav`,
+        high: `Mallet Note/Mallet A2.wav`,
+        sharp: `Mallet Note/Mallet A3.wav`,
+    },
+    {
+        note: "Si",
+        base: `Mallet Note/Mallet B1.wav`,
+        high: `Mallet Note/Mallet B2.wav`,
+        sharp: `Mallet Note/Mallet B3.wav`,
+    },
+];
 
 // LISTENING EVENTS - MOUSE
 
-const mousePlay = (key, note, note2) => {
+const mousePlay = (key, note, note2, note3) => {
     key.addEventListener("click", function(event) {
         let audioElement;
             if (event.shiftKey) {
                 audioElement = new Audio(note2);
+            } else if (event.altKey) {
+                audioElement = new Audio(note3);
             } else {
                 audioElement = new Audio(note);
             }
@@ -68,36 +87,47 @@ const mousePlay = (key, note, note2) => {
         }
         
 
-mousePlay(xyloDo, doNote, doNoteHigh);
-mousePlay(xyloRe, reNote, reNoteHigh);
-mousePlay(xyloMi, miNote, miNoteHigh);
-mousePlay(xyloFa, faNote, faNoteHigh);
-mousePlay(xyloSol, solNote, solNoteHigh);
-mousePlay(xyloLa, laNote, laNoteHigh);
-mousePlay(xyloSi, siNote, siNoteHigh);
+mousePlay(xylo[1], tableNotes[0].base, tableNotes[0].high, tableNotes[0].sharp);
+mousePlay(xylo[2], tableNotes[1].base, tableNotes[1].high, tableNotes[1].sharp);
+mousePlay(xylo[3], tableNotes[2].base, tableNotes[2].high, tableNotes[2].sharp);
+mousePlay(xylo[4], tableNotes[3].base, tableNotes[3].high, tableNotes[3].sharp);
+mousePlay(xylo[5], tableNotes[4].base, tableNotes[4].high, tableNotes[4].sharp);
+mousePlay(xylo[6], tableNotes[5].base, tableNotes[5].high, tableNotes[5].sharp);
+mousePlay(xylo[7], tableNotes[6].base, tableNotes[6].high, tableNotes[6].sharp);
 
 
+let audioNumber = 0;
+let oldNumber;
 
-
-// let touchesDirectionnelles = ["ArrowLeft", "ArrowRight"];
-
-// document.addEventListener("keydown", function(e) {
-//     if (touchesDirectionnelles.includes(e.key)) {
-//         e.preventDefault();
-//         }
-//         switch (e.key) {
-//             case "ArrowLeft": 
-            
-//             break;
-//             case "ArrowRight": 
-            
-//             break;
-//             case "ArrowDown": 
-            
-//             break;
-//             case "ArrowUp": 
-            
-//             break;
-//         }
-//     }
-// )
+    let touchesDirectionnelles = ["ArrowLeft", "ArrowRight"];
+    document.addEventListener("keydown", function(e) {
+        
+        if (touchesDirectionnelles.includes(e.key)) {
+            e.preventDefault();
+            }
+            switch (e.key) {
+                case "ArrowLeft": 
+                    oldNumber = audioNumber;
+                    if (audioNumber > 0) {
+                        audioNumber -= 1;
+                    } else {
+                        audioNumber -= 0;
+                    }
+                    console.log(audioNumber, oldNumber);
+                    let audioElement = new Audio(tableNotes[audioNumber].base);
+                    audioElement.play();
+                break;
+                case "ArrowRight":
+                    oldNumber = audioNumber;
+                    if (audioNumber < tableNotes.length) {
+                        audioNumber += 1;
+                    } else {
+                        audioNumber += 0;
+                    }
+                    console.log(audioNumber, oldNumber);
+                    audioElement = new Audio(tableNotes[audioNumber].base);
+                    audioElement.play();
+                break;
+            }
+        }
+    )
