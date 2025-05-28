@@ -69,7 +69,7 @@ const tableNotes = [
     },
 ];
 
-// LISTENING EVENTS - MOUSE
+// PLAYING MUSIC WITH THE MOUSE
 
 const mousePlay = (key, note, note2, note3) => {
     key.addEventListener("click", function(event) {
@@ -95,9 +95,11 @@ mousePlay(xylo[5], tableNotes[4].base, tableNotes[4].high, tableNotes[4].sharp);
 mousePlay(xylo[6], tableNotes[5].base, tableNotes[5].high, tableNotes[5].sharp);
 mousePlay(xylo[7], tableNotes[6].base, tableNotes[6].high, tableNotes[6].sharp);
 
+// PLAYING MUSIC WITH THE KEYS
 
 let audioNumber = 0;
 let oldNumber;
+let audioElement;
 
     let touchesDirectionnelles = ["ArrowLeft", "ArrowRight"];
     document.addEventListener("keydown", function(e) {
@@ -108,13 +110,13 @@ let oldNumber;
             switch (e.key) {
                 case "ArrowLeft": 
                     oldNumber = audioNumber;
-                    if (audioNumber > 0) {
+                    if (audioNumber >= 0) {
                         audioNumber -= 1;
                     } else {
                         audioNumber -= 0;
                     }
                     console.log(audioNumber, oldNumber);
-                    let audioElement = new Audio(tableNotes[audioNumber].base);
+                    audioElement = new Audio(tableNotes[audioNumber].base);
                     audioElement.play();
                 break;
                 case "ArrowRight":
